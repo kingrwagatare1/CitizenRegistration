@@ -53,6 +53,8 @@ class Home extends BaseController
     public function register(){
 
         $modelObject = new CitizenModel();
+        $session = session();
+        try{
         $data=[
             'national_id'=>$this-> request->getPost('national_id'),
             'names'=>$this -> request->getPost('names'),
@@ -61,7 +63,10 @@ class Home extends BaseController
             'dob'=>$this -> request->getPost('dob'),
         ];
         $modelObject -> insert($data);
-
+        $session->setFlashdata('saved successfully');
+    }catch(\Exception $e){
+        $session->setFlashdata('Data not saved');
+    }
         return redirect()->to('/');
     }
    public function deleteCitizen($national_id){

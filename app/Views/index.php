@@ -46,6 +46,19 @@
         endforeach
         ?>
             </tbody>
+            <?php 
+            if ( session()->get('yes')){
+                ?>
+              <p><?php echo session()->get('yes'); ?></p>    
+            
+            <?php
+            }
+            if( session()->get('no')){
+                ?>
+                <p><?php echo session()->get('no'); ?></p>    
+            <?php
+            }
+            ?>
         </center>
 </body>
 </html>
